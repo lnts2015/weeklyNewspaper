@@ -1,0 +1,75 @@
+<%- include header %>
+    <style type="text/css">
+        .myWorkPostTextarea{
+            margin: 10px;
+            width: 785px;
+            font-size: 15px;
+            padding: 10px;
+            overflow: hidden;
+            overflow-y:auto;
+            height:220px;
+        }
+    </style>
+    <div class="container">
+        <div class="alert alert-info">
+            <h4>我的工作组：<%=user.teamName%></h4>
+        </div>
+        <div class="hero-unit" style="display: none;">
+            <h3>我的工作组</h3>
+            <div class="table-responsive" style="border: 1px dashed #181818;">
+               <!-- 技术部   网站平台   Flash组   网站前端   网站后端   数据组
+                测试组   PHP组   运维组   移动平台   Android组   HTML5组   产品部-->
+                <form method="post">
+                    <table class="table">
+                        <% var teamType = user.team %>
+                        <tr>
+                            <td><input type="checkbox" <% if (teamType !='13') {%> checked <%}%> name="" value="1" disabled> 技术部</td>
+                            <td><input type="checkbox" <% if (teamType !='13') {%> checked <%}%> name="" value="2" disabled> 网站平台</td>
+                            <td><input type="checkbox" <% if (teamType =='3') {%> checked <%}%> name="" value="3"> Flash组</td>
+                            <td><input type="checkbox" <% if (teamType =='4') {%> checked <%}%> name="" value="4"> 网站前端</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" <% if (teamType =='5') {%> checked <%}%> name="" value="5"> 网站后端</td>
+                            <td><input type="checkbox" <% if (teamType =='6') {%> checked <%}%> name="" value="6"> 数据组</td>
+                            <td><input type="checkbox" <% if (teamType =='7') {%> checked <%}%> name="" value="7"> 测试组</td>
+                            <td><input type="checkbox" <% if (teamType =='8') {%> checked <%}%> name="" value="8"> PHP组</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" <% if (teamType =='9') {%> checked <%}%> name="" value="9"> 运维组</td>
+                            <td><input type="checkbox" <% if (teamType =='10') {%> checked <%}%> name="" value="10"> 移动平台</td>
+                            <td><input type="checkbox" <% if (teamType =='11') {%> checked <%}%> name="" value="11"> Android组</td>
+                            <td><input type="checkbox" <% if (teamType =='12') {%> checked <%}%> name="" value="12"> HTML5组</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" <% if (teamType =='13') {%> checked <%}%> name="" value="13"> 产品部</td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-inverse" style="position: absolute;margin: -50px 100px;">提 交</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="hero-unit">
+            <h3>我的近期工作重点</h3>
+
+            <div class="table-responsive" style="border: 1px dashed #181818;">
+                <% if (myWorkContent.length == 0) {%>
+                <form method="post">
+                    <textarea name="myWorkPost" id="" class="myWorkPostTextarea" cols="30" rows="10"> <% if(user) {%>  <% myWorkContent.forEach(function (post, index) { %><%- post.post %><% }) %> <%}%></textarea>
+                    <button type="submit" class="btn btn-inverse" style="margin-left: 10px;">提  交</button>
+                </form>
+                <%} else {%>
+                <textarea name="" id="" disabled class="myWorkPostTextarea" cols="30" rows="10"><% myWorkContent.forEach(function (post, index) { %><%- post.post %><% }) %></textarea>
+                    <a href="/edit/<%=user._id%>" class="btn btn-inverse" style="margin:0 0 10px 10px;">编 辑</a>
+                <%}%>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+
+        });
+    </script>
+
+<%- include footer %>

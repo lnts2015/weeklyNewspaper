@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>nodeJs -- weeklyNewspaper</title>
+    <link rel="shortcut icon" href="/images/heart.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <script type="text/javascript" src="/javascripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/javascripts/core.js"></script>
+    <!--<script type="text/javascript" src="/javascripts/$17.js"></script>-->
+
+    <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+    <!-- Le styles -->
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
+
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-ie6.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/ie.css">
+    <![endif]-->
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .tipMessageShow{
+            margin: 100px 36%;
+            padding: 50px;
+            position: fixed;
+            width: 310px;
+            font-size: 20px;
+        }
+        .tipMessageShow i{
+            position: static;
+            margin: -45px 333px;
+            color: #000000;
+            cursor: pointer;
+        }
+        .tipMessageShow .tipMessageShowSpan{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                            <% if (user) {%> 您好： <%=user.name%>
+                                <ul class="nav pull-right">
+                                    <li class="dropdown" id="fat-menu">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">
+                                            <i class="icon-user icon-white" title="个人设置"></i>
+                                        </a>
+                                        <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">
+                                            <li role="presentation">
+                                                <a href="/userinfo/<%=user.name%>" tabindex="-1" role="menuitem">修改个人信息</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            <%}%>
+                        </p>
+                        <ul id="menu_list_box" class="nav">
+                            <% var t = title %>
+                            <li <% if (t == 'index') {%> class="active" <%}%> ><a href="/">首页</a></li>
+                            <% if (user) {%>
+                                <li <% if (t == 'myWork') {%> class="active" <%}%>><a href="/myWork">我的工作</a></li>
+                                <li <% if (t == 'news') {%> class="active" <%}%>><a href="/news">写周报</a></li>
+                                <li <% if (t == 'team') {%> class="active" <%}%>><a href="/team">工作组</a></li>
+                                <li <% if (t == '') {%> class="active" <%}%>><a href="/logout">登出</a></li>
+                            <%} else {%>
+                                <li <% if (t == 'login') {%> class="active" <%}%>><a href="/login">登录</a></li>
+                                <li <% if (t == 'reg') {%> class="active" <%}%>><a href="/reg">注册</a></li>
+                            <%}%>
+
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <!--[if lte IE 6]>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-ie.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function() {
+                if ($.isFunction($.bootstrapIE6)) $.bootstrapIE6($(document));
+
+            });
+        })(jQuery);
+    </script>
+<article>
+
+    <!-- 提示信息显示 -->
+    <% if (success) { %>
+    <div class="alert alert-success tipMessageShow">
+        <i class="icon-remove"></i><%= success %>
+    </div>
+    <% } %>
+    <% if (error) { %>
+    <div class="alert alert-error tipMessageShow">
+        <i class="icon-remove"></i><%= error %>
+    </div>
+    <% } %>
+
+    <script type="text/javascript">
+        $(function(){
+            $(".tipMessageShow i").click(function(){
+                $(".tipMessageShow").fadeIn();
+            });
+            setTimeout(function(){ $(".tipMessageShow").hide();},2000);
+
+            $('.dropdown-toggle').dropdown();
+        });
+
+
+    </script>
+

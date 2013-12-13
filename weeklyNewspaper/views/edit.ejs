@@ -1,0 +1,30 @@
+<%- include header %>
+<style type="text/css">
+    .my_work_content_box{
+        padding: 10px;
+        font-size: 15px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .myWorkPostTextarea{
+        margin: 10px;
+        width: 895px;
+        font-size: 15px;
+        padding: 10px;
+        overflow: hidden;
+        overflow-y:auto;
+        height:220px;
+    }
+</style>
+
+<div class="container">
+    <h3>编辑我的工作重点</h3>
+    <div class="table-responsive" style="border: 1px dashed #181818;">
+        <form method="post">
+            <textarea name="myWorkPostUpdate" class="myWorkPostTextarea" cols="30" rows="10"><% myWorkContent.forEach(function (post, index){ %><%- post.post %><% }) %></textarea>
+            <button type="submit" class="btn btn-inverse" style="margin-left: 10px;">提  交</button>
+        </form>
+
+
+    </div>
+</div>
+<%- include footer %>

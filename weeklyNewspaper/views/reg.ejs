@@ -1,0 +1,53 @@
+<%- include header %>
+<style type="text/css">
+    body { padding-top: 60px; padding-bottom: 40px; background-color: #f5f5f5; }
+    a, input, button, select{ outline:none !important;}
+    .form-signin { max-width: 300px; padding: 19px 29px 29px; margin: 0 auto 20px; background-color: #fff; border: 1px solid #e5e5e5; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05); box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .form-signin .form-signin-heading,  .form-signin .checkbox { margin-bottom: 10px; }
+    .form-signin input[type="text"],  .form-signin input[type="password"] { font-size: 16px; height: auto; margin-bottom: 15px; padding: 7px 9px; vertical-align: inherit;}
+    .font-zh{font-family: '微软雅黑', 'Microsoft YaHei', Arial; font-weight: normal;}
+    .table th, .table td{word-break:break-all; word-wrap:break-word;}
+</style>
+<div class="container-fluid">
+    <div class="row-fluid" style="width: 360px; margin:0 auto;">
+        <form class="form-signin" method="post">
+            <h2 class="form-signin-heading text-center">注 册</h2>
+            <input type="text" name="name" class="input-block-level" placeholder="用户名 [必填]"/>
+            <input type="password" name="password" class="input-block-level" placeholder="密码 [必填]"/>
+            <input type="password" name="password-repeat" class="input-block-level" placeholder="确认密码 [必填]"/>
+            <input type="text" id="team_type" name="team_type" style="display: none;">
+            <input type="text" id="team_type_name" name="team_type_name" style="display: none;">
+            <select  id="team_list_box" class="input-block-level" style="color: #A3A3A3;">
+                <option value="0">我的工作组 [必选]</option>
+                <option value="1">技术部</option>
+                <option value="2">网站平台</option>
+                <option value="3">Flash组</option>
+                <option value="4">网站前端</option>
+                <option value="5">网站后端</option>
+                <option value="6">数据组</option>
+                <option value="7">测试组</option>
+                <option value="8">PHP组</option>
+                <option value="9">运维组</option>
+                <option value="10">移动平台</option>
+                <option value="11">Android组</option>
+                <option value="12">HTML5组</option>
+                <option value="13">产品部</option>
+                <option value="14">其他</option>
+            </select></br>
+            <button class="btn btn-primary" type="submit">注 册</button>
+            <a href="/login">去登录</a>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#team_list_box").click(function(){
+            console.info($(this).children('option:selected').val());
+            $("#team_type").val($(this).children('option:selected').val());
+            $("#team_type_name").val($(this).children('option:selected').text());
+            console.info($(this).children('option:selected').text());
+        });
+    });
+
+</script>
+<%- include footer %>

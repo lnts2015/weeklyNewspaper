@@ -1,0 +1,89 @@
+<%- include header %>
+<style type="text/css">
+    .my_work_content_box{
+        padding: 10px;
+        font-size: 15px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+</style>
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><h5>个人信息修改</h5></li>
+                    <li class="active"><a href="#userName" data-toggle="tab">修改用户名</a></li>
+                    <li><a href="#userPassword" data-toggle="tab">修改密码</a></li>
+                    <li><a href="#userWork" data-toggle="tab">工作组修改</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="hero-unit">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="userName" >
+                    <div class="container" style="width: 350px; padding: 30px; background: none repeat scroll 0 0 #FFFFFF;">
+                        <form class="form-signin" method="post">
+                            <h4 class="form-signin-heading text-center">修改用户名</h4>
+                            用户名:<input type="text" style="width: 230px; margin-top: 10px;" name="updateName" class="input-block-level" placeholder="填写您要修改的用户名">
+                            <button class="btn btn-smile btn-primary" style="margin-left: 150px;" type="submit">修 改</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="userPassword">
+                    <div class="container" style="width: 350px; padding: 30px; background: none repeat scroll 0 0 #FFFFFF;">
+                        <form class="form-signin" method="post" action="/updatePwd">
+                            <h4 class="form-signin-heading text-center">修改密码</h4>
+                            原密码:<input type="text" style="width: 230px; margin-top: 10px;" name="oldPwd" class="input-block-level" placeholder="原密码"></br>
+                            新密码:<input type="text" style="width: 230px; margin-top: 10px;" name="newPwd" class="input-block-level" placeholder="新密码"></br>
+                            <button class="btn btn-smile btn-primary" style="margin-left: 150px;" type="submit">修 改</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="userWork">
+                    <div class="container" style="width: 350px; padding: 30px; background: none repeat scroll 0 0 #FFFFFF;">
+                        <form class="form-signin" method="post" action="/updateTeam">
+                            <h4 class="form-signin-heading text-center">工作组修改</h4>
+                            <input type="text" id="team_type" name="team_type" style="display: none;">
+                            <input type="text" id="team_type_name" name="team_type_name" style="display: none;">
+                            <select  id="team_list_box" class="input-block-level" style="color: #A3A3A3;">
+                                <option value="0">我的工作组 [必选]</option>
+                                <option value="1">技术部</option>
+                                <option value="2">网站平台</option>
+                                <option value="3">Flash组</option>
+                                <option value="4">网站前端</option>
+                                <option value="5">网站后端</option>
+                                <option value="6">数据组</option>
+                                <option value="7">测试组</option>
+                                <option value="8">PHP组</option>
+                                <option value="9">运维组</option>
+                                <option value="10">移动平台</option>
+                                <option value="11">Android组</option>
+                                <option value="12">HTML5组</option>
+                                <option value="13">产品部</option>
+                                <option value="14">其他</option>
+                            </select></br>
+                            <button class="btn btn-primary" style="margin-left: 150px;" type="submit">修 改</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <script type="text/javascript">
+        $(function(){
+            $("#team_list_box").click(function(){
+                $("#team_type").val($(this).children('option:selected').val());
+                $("#team_type_name").val($(this).children('option:selected').text());
+            });
+
+        });
+
+    </script>
+
+
+<%- include footer %>
